@@ -12,8 +12,8 @@ Array.prototype.myEach = function(callbackFn) {
 };
 
 ///////////////////////////////////////////////////myEach Testing code/////////////////////////////////////////////////////////
-/*// Test myEach against the native forEach to ensure that myEach works as the same as forEach
-let myArray = [1,2,,4,5];   // Array called by the function
+// Test myEach against the native forEach to ensure that myEach works as the same as forEach
+/*let myArray = [1,2,,4,5];   // Array called by the function
 
 // Test with 1 parameter: element
 console.log("myEach (1 parameter): element");
@@ -39,9 +39,46 @@ console.log(myArray);*/
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // MAP //
-Array.prototype.myMap = function() {
-  // Place your code here.
+Array.prototype.myMap = function(callbackFn) {
+  //Create new array which would be equal to size of 'this' array
+  let new_arr=new Array(this.length);
+  //for each of the elements of 'this' array
+  for(let i=0;i<this.length;i++){
+    //if ith element is undefined, continue to next element
+    if(this[i]===undefined) continue;
+    //set ith element of new array equal to the result of calling callbackFn on the ith element, ith index and array of 'this' array
+    new_arr[i]=callbackFn(this[i],i,this);
+  }
+  //return new_arr
+  return new_arr;
 };
+
+///////////////////////////////////////////////////myEach Testing code/////////////////////////////////////////////////////////
+// Test myMap against the native map to ensure that myEach works as the same as map
+/*let myArray = [1,2,,4,5];
+console.log("Original array: ",myArray,'\n')
+// Test with 1 parameter: element
+console.log("myMap (1 parameter): element");
+console.log("Mapped array: ",myArray.myMap(x => x*3));
+console.log("map (1 parameter): element"); 
+console.log("Mapped array: ",myArray.map(x => x*3));
+
+
+// Test with 2 parameters: element, index
+console.log("myMap (2 parameters): element, index");
+console.log("Mapped array: ",myArray.myMap((x,i) => x*(i+3)));
+console.log("map (2 parameters): element, index");
+console.log("Mapped array: ",myArray.map((x,i) => x*(i+3)));
+
+// Test with 3 parameters: element, index, array
+console.log("myMap (3 parameters): element, index, array");
+console.log("Mapped array: ",myArray.myMap((x,i,arr) => x*(arr[i]+3)));
+console.log("map (3 parameters): element, index, array");
+console.log("Mapped array: ",myArray.map((x,i,arr) => x*(arr[i]+3)));
+
+//Original array remains unchanged
+console.log("\nOriginal array: ",myArray);*/
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // SOME //
 Array.prototype.mySome = function() {
