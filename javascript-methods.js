@@ -226,9 +226,39 @@ console.log(myArray);   // Output [1,2,3,4,5,6,7,8]*/
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // LASTINDEXOF //
-Array.prototype.myLastIndexOf = function() {
-  // Place your code here.
+Array.prototype.myLastIndexOf = function(searchElement,fromIndex=this.length) {
+    //for each of the elements of 'this' array starting from fromIndex and going to index 0
+    for(let i=fromIndex;i>=0;i--){
+      //return index i if search element is the ith element
+      if(this[i]===searchElement) return i;
+    }
+    //return -1 if element not found
+    return -1;
 };
+
+///////////////////////////////////////////////////myEach Testing code/////////////////////////////////////////////////////////
+// Test myLastIndexOf against the native lastIndexOf to ensure that myLastIndexOf works as the same as lastIndexOf
+/*let myArray = [1,2,,4,5,1,2];
+console.log("Original array: ",myArray,'\n')
+// Test with 1 parameter: searchElement
+console.log("myLastIndexOf (1 parameter): searchElement");
+console.log("Result 1: ",myArray.myLastIndexOf(1));
+console.log("Result 2: ",myArray.myLastIndexOf(0));
+console.log("lastIndexOf (1 parameter): searchElement"); 
+console.log("Result 1: ",myArray.lastIndexOf(1));
+console.log("Result 2: ",myArray.lastIndexOf(0));
+
+// Test with 2 parameters: searchElement, fromIndex
+console.log("myLastIndexOf (2 parameter): searchElement, fromIndex");
+console.log("Result 1: ",myArray.myLastIndexOf(4,1));
+console.log("Result 2: ",myArray.myLastIndexOf(2,2));
+console.log("lastIndexOf (2 parameter): searchElement, fromIndex"); 
+console.log("Result 1: ",myArray.lastIndexOf(4,1));
+console.log("Result 2: ",myArray.lastIndexOf(2,2));
+
+//Original array remains unchanged
+console.log("\nOriginal array: ",myArray);*/
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // KEYS //
 Object.myKeys = function() {
