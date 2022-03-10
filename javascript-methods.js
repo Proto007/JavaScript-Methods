@@ -130,9 +130,39 @@ Array.prototype.myReduce = function() {
 };
 
 // INCLUDES //
-Array.prototype.myIncludes = function() {
-  // Place your code here.
+Array.prototype.myIncludes = function(searchElement,fromIndex=0) {
+  //for each of the elements of 'this' array starting from fromIndex
+  for(let i=fromIndex;i<this.length;i++){
+    //return true if search element is the ith element
+    if(this[i]===searchElement) return true;
+  }
+  //return false
+  return false;
 };
+
+///////////////////////////////////////////////////myEach Testing code/////////////////////////////////////////////////////////
+// Test myIncludes against the native includes to ensure that myIncludes works as the same as includes
+/*let myArray = [1,2,,4,5];
+console.log("Original array: ",myArray,'\n')
+// Test with 1 parameter: searchElement
+console.log("myIncludes (1 parameter): searchElement");
+console.log("Result 1: ",myArray.myIncludes(1));
+console.log("Result 2: ",myArray.myIncludes(0));
+console.log("includes (1 parameter): searchElement"); 
+console.log("Result 1: ",myArray.includes(1));
+console.log("Result 2: ",myArray.includes(0));
+
+// Test with 2 parameters: searchElement, fromIndex
+console.log("myIncludes (2 parameter): searchElement, fromIndex");
+console.log("Result 1: ",myArray.myIncludes(2,1));
+console.log("Result 2: ",myArray.myIncludes(1,2));
+console.log("includes (2 parameter): searchElement, fromIndex"); 
+console.log("Result 1: ",myArray.includes(2,1));
+console.log("Result 2: ",myArray.includes(1,2));
+
+//Original array remains unchanged
+console.log("\nOriginal array: ",myArray);*/
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // INDEXOF //
 Array.prototype.myIndexOf = function() {
