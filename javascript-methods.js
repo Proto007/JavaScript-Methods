@@ -81,9 +81,48 @@ console.log("\nOriginal array: ",myArray);*/
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // SOME //
-Array.prototype.mySome = function() {
-  // Place your code here.
+Array.prototype.mySome = function(callbackFn) {
+  //for each of the elements of 'this' array
+  for(let i=0;i<this.length;i++){
+    //return true if callback function returns true for ith element, ith index and 'this' array
+    if(callbackFn(this[i],i,this)===true) return true;
+  }
+  //return false
+  return false;
 };
+
+///////////////////////////////////////////////////myEach Testing code/////////////////////////////////////////////////////////
+// Test mySome against the native some to ensure that mySome works as the same as some
+/*let myArray = [1,2,,4,5];
+console.log("Original array: ",myArray,'\n')
+// Test with 1 parameter: element
+console.log("mySome (1 parameter): element");
+console.log("Result 1: ",myArray.mySome(x => (x<5)));
+console.log("Result 2: ",myArray.mySome(x => (x>5)));
+console.log("some (1 parameter): element"); 
+console.log("Result 1: ",myArray.some(x => (x<5)));
+console.log("Result 2: ",myArray.some(x => (x>5)));
+
+
+// Test with 2 parameters: element, index
+console.log("myMap (2 parameters): element, index");
+console.log("Result 1: ",myArray.mySome((x,i) => (x==i)));
+console.log("Result 2: ",myArray.mySome((x,i) => (x>i)));
+console.log("map (2 parameters): element, index");
+console.log("Result 1: ",myArray.some((x,i) => (x==i)));
+console.log("Result 2: ",myArray.some((x,i) => (x>i)));
+
+// Test with 3 parameters: element, index, array
+console.log("myMap (3 parameters): element, index, array");
+console.log("Result 1: ",myArray.mySome((x,i,arr) => (x%(arr.length/i)==0)));
+console.log("Result 2: ",myArray.mySome((x,i,arr) => (x%(arr.length/i)==10)));
+console.log("map (3 parameters): element, index, array");
+console.log("Result 1: ",myArray.some((x,i,arr) => (x%(arr.length/i)==0)));
+console.log("Result 2: ",myArray.some((x,i,arr) => (x%(arr.length/i)==10)));
+
+//Original array remains unchanged
+console.log("\nOriginal array: ",myArray);*/
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // REDUCE //
 Array.prototype.myReduce = function() {
