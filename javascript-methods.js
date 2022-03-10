@@ -165,9 +165,39 @@ console.log("\nOriginal array: ",myArray);*/
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // INDEXOF //
-Array.prototype.myIndexOf = function() {
-  // Place your code here.
+Array.prototype.myIndexOf = function(searchElement,fromIndex=0) {
+    //for each of the elements of 'this' array starting from fromIndex
+    for(let i=fromIndex;i<this.length;i++){
+      //return index i if search element is the ith element
+      if(this[i]===searchElement) return i;
+    }
+    //return -1 if element not found
+    return -1;
 };
+
+///////////////////////////////////////////////////myEach Testing code/////////////////////////////////////////////////////////
+// Test myIndexOf against the native indexOf to ensure that myIndexOf works as the same as indexOf
+/*let myArray = [1,2,,4,5];
+console.log("Original array: ",myArray,'\n')
+// Test with 1 parameter: searchElement
+console.log("myIndexOf (1 parameter): searchElement");
+console.log("Result 1: ",myArray.myIndexOf(1));
+console.log("Result 2: ",myArray.myIndexOf(0));
+console.log("indexOf (1 parameter): searchElement"); 
+console.log("Result 1: ",myArray.indexOf(1));
+console.log("Result 2: ",myArray.indexOf(0));
+
+// Test with 2 parameters: searchElement, fromIndex
+console.log("myIndexOf (2 parameter): searchElement, fromIndex");
+console.log("Result 1: ",myArray.myIndexOf(4,1));
+console.log("Result 2: ",myArray.myIndexOf(1,2));
+console.log("indexOf (2 parameter): searchElement, fromIndex"); 
+console.log("Result 1: ",myArray.indexOf(4,1));
+console.log("Result 2: ",myArray.indexOf(1,2));
+
+//Original array remains unchanged
+console.log("\nOriginal array: ",myArray);*/
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // PUSH //
 // COPIED FROM THE CODE GIVEN BY PROFESSOR LAI
