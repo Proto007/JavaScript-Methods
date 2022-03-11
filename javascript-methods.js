@@ -53,7 +53,7 @@ Array.prototype.myMap = function(callbackFn) {
   return new_arr;
 };
 
-///////////////////////////////////////////////////myEach Testing code/////////////////////////////////////////////////////////
+///////////////////////////////////////////////////myMap Testing code/////////////////////////////////////////////////////////
 // Test myMap against the native map to ensure that myEach works as the same as map
 /*let myArray = [1,2,,4,5];
 console.log("Original array: ",myArray,'\n')
@@ -91,7 +91,7 @@ Array.prototype.mySome = function(callbackFn) {
   return false;
 };
 
-///////////////////////////////////////////////////myEach Testing code/////////////////////////////////////////////////////////
+///////////////////////////////////////////////////mySome Testing code/////////////////////////////////////////////////////////
 // Test mySome against the native some to ensure that mySome works as the same as some
 /*let myArray = [1,2,,4,5];
 console.log("Original array: ",myArray,'\n')
@@ -125,9 +125,77 @@ console.log("\nOriginal array: ",myArray);*/
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // REDUCE //
-Array.prototype.myReduce = function() {
-  // Place your code here.
+Array.prototype.myReduce = function(callbackFn,initialVal) {
+  //define variables that would be used later 
+  let previousValue,currentValue,i;
+  //if user doesn't provide initialVal, initialize previousValue as array[0], initialize currentValue as array[1], initialize i as 1
+  if(initialVal===undefined){
+    previousValue=this[0];
+    currentValue=this[1];
+    i=1;
+  }
+  //if user provides initialVal, initialize previousValue as initialVal, initialize currentValue as array[0], innitialize i as 0
+  else{
+    previousValue=initialVal;
+    currentValue=this[0];
+    i=0;
+  }
+  //for loop goes from i to the length of 'this' array
+  for(i; i<this.length; i++){
+    //continue if current item is undefined
+    if(this[i]===undefined)continue;
+    //call callbackFn using the following:
+      //previousValue: result of last callbackFn call
+      //this[i]: value of ith element in 'this' array
+      //i: index of ith element
+      //this: 'this' array
+    currentValue=callbackFn(previousValue, this[i], i, this);
+    //set previousValue equal to currentValue
+    previousValue=currentValue;
+  }
+  return currentValue;
 };
+
+///////////////////////////////////////////////////myReduce Testing code/////////////////////////////////////////////////////////
+// Test mySome against the native some to ensure that mySome works as the same as some
+/*let myArray = [1,2,,4,5];
+console.log("Original array: ",myArray,'\n')
+// Test with 1 parameter: previousValue
+console.log("myReduce (1 parameter): previousValue");
+console.log("Result 1: ",myArray.myReduce(x => {return x+x}));
+console.log("Result 2: ",myArray.myReduce((x => {return x+x}),2));
+console.log("reduce (1 parameter): previousValue"); 
+console.log("Result 1: ",myArray.reduce(x => {return x+x}));
+console.log("Result 2: ",myArray.reduce((x => {return x+x}),2));
+
+
+// Test with 2 parameters: previousValue, currentValue
+console.log("myReduce (2 parameters): previousValue, currentValue");
+console.log("Result 1: ",myArray.myReduce((x,y) => {return x+y}));
+console.log("Result 2: ",myArray.myReduce((x,y) => {return x+y},2));
+console.log("reduce (2 parameters): previousValue, currentValue");
+console.log("Result 1: ",myArray.reduce((x,y) => {return x+y}));
+console.log("Result 2: ",myArray.reduce((x,y) => {return x+y},2));
+
+// Test with 3 parameters: previousValue, currentValue, currentIndex
+console.log("myReduce (3 parameters): previousValue, currentValue, currentIndex");
+console.log("Result 1: ",myArray.myReduce((x,y,i) => {return x+y*i}));
+console.log("Result 2: ",myArray.myReduce((x,y,i) => {return x+y*i},2));
+console.log("reduce (3 parameters): previousValue, currentValue, currentIndex");
+console.log("Result 1: ",myArray.reduce((x,y,i) => {return x+y*i}));
+console.log("Result 2: ",myArray.reduce((x,y,i) => {return x+y*i},2));
+
+// Test with 4 parameters: previousValue, currentValue, currentIndex, array
+console.log("myReduce (4 parameters): previousValue, currentValue, currentIndex, array");
+console.log("Result 1: ",myArray.myReduce((x,y,i,arr) => {return x+y*arr[i]}));
+console.log("Result 2: ",myArray.myReduce((x,y,i,arr) => {return x+y*arr[i]},2));
+console.log("reduce (4 parameters): previousValue, currentValue, currentIndex, array");
+console.log("Result 1: ",myArray.reduce((x,y,i,arr) => {return x+y*arr[i]}));
+console.log("Result 2: ",myArray.reduce((x,y,i,arr) => {return x+y*arr[i]},2));
+
+//Original array remains unchanged
+console.log("\nOriginal array: ",myArray);*/
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // INCLUDES //
 Array.prototype.myIncludes = function(searchElement,fromIndex=0) {
@@ -140,7 +208,7 @@ Array.prototype.myIncludes = function(searchElement,fromIndex=0) {
   return false;
 };
 
-///////////////////////////////////////////////////myEach Testing code/////////////////////////////////////////////////////////
+///////////////////////////////////////////////////myIncludes Testing code/////////////////////////////////////////////////////////
 // Test myIncludes against the native includes to ensure that myIncludes works as the same as includes
 /*let myArray = [1,2,,4,5];
 console.log("Original array: ",myArray,'\n')
@@ -175,7 +243,7 @@ Array.prototype.myIndexOf = function(searchElement,fromIndex=0) {
     return -1;
 };
 
-///////////////////////////////////////////////////myEach Testing code/////////////////////////////////////////////////////////
+///////////////////////////////////////////////////myIndexOf Testing code/////////////////////////////////////////////////////////
 // Test myIndexOf against the native indexOf to ensure that myIndexOf works as the same as indexOf
 /*let myArray = [1,2,,4,5];
 console.log("Original array: ",myArray,'\n')
@@ -236,7 +304,7 @@ Array.prototype.myLastIndexOf = function(searchElement,fromIndex=this.length) {
     return -1;
 };
 
-///////////////////////////////////////////////////myEach Testing code/////////////////////////////////////////////////////////
+///////////////////////////////////////////////////myLastIndexOf Testing code/////////////////////////////////////////////////////////
 // Test myLastIndexOf against the native lastIndexOf to ensure that myLastIndexOf works as the same as lastIndexOf
 /*let myArray = [1,2,,4,5,1,2];
 console.log("Original array: ",myArray,'\n')
@@ -274,7 +342,7 @@ Object.myKeys = function(obj) {
   return return_arr;
 };
 
-///////////////////////////////////////////////////myEach Testing code/////////////////////////////////////////////////////////
+///////////////////////////////////////////////////myKeys Testing code/////////////////////////////////////////////////////////
 // Test myKeys against the native keys to ensure that myKeys works as the same as keys
 /*let myDict = {5:"five",1:"one",2:"two",3:"three",4:"four"};
 let myArr=['a','b','c',,'e'];
@@ -313,7 +381,7 @@ Object.myValues = function(obj) {
   return return_arr;
 };
 
-///////////////////////////////////////////////////myEach Testing code/////////////////////////////////////////////////////////
+///////////////////////////////////////////////////myValues Testing code/////////////////////////////////////////////////////////
 // Test myValues against the native values to ensure that myValues works as the same as values
 /*let myDict = {5:"five",1:"one",2:"two",3:"three",4:"four"};
 let myArr=['a','b','c',,'e'];
