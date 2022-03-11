@@ -275,7 +275,7 @@ Object.myKeys = function(obj) {
 };
 
 ///////////////////////////////////////////////////myEach Testing code/////////////////////////////////////////////////////////
-// Test myLastIndexOf against the native lastIndexOf to ensure that myLastIndexOf works as the same as lastIndexOf
+// Test myKeys against the native keys to ensure that myKeys works as the same as keys
 /*let myDict = {5:"five",1:"one",2:"two",3:"three",4:"four"};
 let myArr=['a','b','c',,'e'];
 console.log(myArr.length);
@@ -300,6 +300,40 @@ console.log("\nOriginal array: ",myArr);*/
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // VALUES //
-Object.myValues = function() {
-  // Place your code here.
+Object.myValues = function(obj) {
+  //create an empty array which will be returned once its polluted
+  let return_arr= new Array();
+  //function_names is an array with names of methods that are introduced in this file for array.prototype
+  let function_names=['myEach', 'myMap', 'mySome', 'myReduce', 'myIncludes', 'myIndexOf', 'myPush', 'myLastIndexOf'];
+  //for loop iterates through indexes in obj
+  for(i in obj){
+    //add value of ith index to return_arr if its not in function_names
+    if(!function_names.includes(i)) return_arr.push(obj[i]);
+  }
+  return return_arr;
 };
+
+///////////////////////////////////////////////////myEach Testing code/////////////////////////////////////////////////////////
+// Test myValues against the native values to ensure that myValues works as the same as values
+/*let myDict = {5:"five",1:"one",2:"two",3:"three",4:"four"};
+let myArr=['a','b','c',,'e'];
+console.log(myArr.length);
+console.log("Original dictionary: ",myDict,'\n');
+console.log("Original array: ",myArr,'\n');
+
+// Test with 1 parameter: object(dictionary)
+console.log("myValues (object(dictionary))");
+console.log("Result: ",Object.myValues(myDict));
+console.log("values (object(dictionary))"); 
+console.log("Result: ",Object.values(myDict));
+
+// Test with 1 parameter: object(array)
+console.log("myValues (object(array))");
+console.log("Result: ",Object.myValues(myArr));
+console.log("values (object(array))"); 
+console.log("Result: ",Object.values(myArr));
+
+//Original array and dictionary remains unchanged
+console.log("\nOriginal dictionary: ",myDict);
+console.log("\nOriginal array: ",myArr);*/
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
