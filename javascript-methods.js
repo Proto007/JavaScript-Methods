@@ -261,9 +261,43 @@ console.log("\nOriginal array: ",myArray);*/
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // KEYS //
-Object.myKeys = function() {
-  // Place your code here.
+Object.myKeys = function(obj) {
+  //create an empty array which will be returned once its polluted
+  let return_arr= new Array();
+  //function_names is an array with names of methods that are introduced in this file for array.prototype
+  let function_names=['myEach', 'myMap', 'mySome', 'myReduce', 'myIncludes', 'myIndexOf', 'myPush', 'myLastIndexOf'];
+  //for loop iterates through indexes in obj
+  for(i in obj){
+    //add i to return_arr if its not in function_names
+    if(!function_names.includes(i)) return_arr.push(i);
+  }
+  return return_arr;
 };
+
+///////////////////////////////////////////////////myEach Testing code/////////////////////////////////////////////////////////
+// Test myLastIndexOf against the native lastIndexOf to ensure that myLastIndexOf works as the same as lastIndexOf
+/*let myDict = {5:"five",1:"one",2:"two",3:"three",4:"four"};
+let myArr=['a','b','c',,'e'];
+console.log(myArr.length);
+console.log("Original dictionary: ",myDict,'\n');
+console.log("Original array: ",myArr,'\n');
+
+// Test with 1 parameter: object(dictionary)
+console.log("myKeys (object(dictionary))");
+console.log("Result: ",Object.myKeys(myDict));
+console.log("keys (object(dictionary))"); 
+console.log("Result: ",Object.keys(myDict));
+
+// Test with 1 parameter: object(array)
+console.log("myKeys (object(array))");
+console.log("Result: ",Object.myKeys(myArr));
+console.log("keys (object(array))"); 
+console.log("Result: ",Object.keys(myArr));
+
+//Original array and dictionary remains unchanged
+console.log("\nOriginal dictionary: ",myDict);
+console.log("\nOriginal array: ",myArr);*/
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // VALUES //
 Object.myValues = function() {
